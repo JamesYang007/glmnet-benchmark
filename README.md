@@ -30,10 +30,9 @@ A couple notes:
   To make it an absolutely fair benchmark, we also changed the `n_alphas` parameter in `glum` to match
   the total number of points realized after fitting with `glmnet`.
 - Both methods use warm-starts.
-- The biggest challenge in making this a fair benchmark is choosing the threshold.
-  Glum's `_cd_fast.py` in the source code seems to take the absolute difference in `beta_i` values after each coordinate descent
+- Convergence criterion: `glum`'s `_cd_fast.py` in the source code seems to take the absolute difference in `beta_i` values after each coordinate descent
   and checks if that is below the threshold.
-  Glmnet takes the maximum of the _squared_ difference in `beta_i` after each coordinate descent
+  `glmnet` takes the maximum of the _squared_ difference in `beta_i` after each coordinate descent
   and checks if that is below the threshold.
   This is why the tolerance for `glmnet` is that of `glum` squared.
 
