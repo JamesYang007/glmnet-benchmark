@@ -31,15 +31,18 @@ A couple notes:
   the total number of points realized after fitting with `glmnet`.
 - Both methods use warm-starts.
 - The biggest challenge in making this a fair benchmark is choosing the threshold.
-  Glum seems to sum the absolute change in `beta_i` values after each coordinate descent
-  and checks if that sum is below the threshold.
-  Glmnet takes the maximum of the squared difference in `beta_i` after each coordinate descent
+  Glum's `_cd_fast.py` in the source code seems to take the absolute difference in `beta_i` values after each coordinate descent
+  and checks if that is below the threshold.
+  Glmnet takes the maximum of the _squared_ difference in `beta_i` after each coordinate descent
   and checks if that is below the threshold.
   This is why the tolerance for `glmnet` is that of `glum` squared.
 
 The workflow is as follows:
 - Go in each of the files `bench_glum.py`, `bench_glmnet.R`, `make_data.py` and change `n, p`.
-- If you haven't created data for the current value of `n, p`, run `python make_data.py`.
+- If you haven't created data for the current value of `n, p`, run:
+```bash
+python make_data.py
+```
 - Run the benchmarks separately:
 ```bash
 python bench_glum.py
