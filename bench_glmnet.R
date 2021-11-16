@@ -13,8 +13,8 @@ get_data = function(n, p) {
 }
 
 timer = function(X, y) {
-    time.out = microbenchmark(glmnet(X, y, family='gaussian', tol=1e-14, standardize=F), times=1L, unit='s')
-    glmnet.out = glmnet(X, y, family='gaussian', tol=1e-14, standardize=F)
+    time.out = microbenchmark(glmnet(X, y, family='gaussian', tol=1e-14, standardize=F, lambda=0.0074), times=1L, unit='s')
+    glmnet.out = glmnet(X, y, family='gaussian', tol=1e-14, standardize=F, lambda=0.0074)
     list(out=glmnet.out, elapsed=summary(time.out)$mean)
 }
 

@@ -28,9 +28,9 @@ glr = GLR(l1_ratio=1,
           scale_predictors=False,
           min_alpha_ratio=0.01 if n < p else 1e-4,
           solver='irls-cd',
-          n_alphas=62,
-          alpha_search=True,
-          warm_start=True
+          alpha=0.54
+          #n_alphas=62,
+          #alpha_search=True
           )
 glr_fit, elapsed = timer(X, y, glr)
 print("Coef:\n", glr_fit.coef_)
